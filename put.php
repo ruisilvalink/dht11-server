@@ -2,8 +2,8 @@
 
 include "entry.inc";
 
-$API_TOKEN = get_env('API_TOKEN');
-$STORAGE_ROOT = get_env('STORAGE_PATH');
+$API_TOKEN = getenv('API_TOKEN');
+$STORAGE_ROOT = getenv('STORAGE_PATH');
 
 $token = $_POST['token'];
 if ($token != $API_TOKEN) {
