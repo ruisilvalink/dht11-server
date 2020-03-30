@@ -17,8 +17,8 @@ $entry->humidity = $_POST['humidity'];
 $entry->temperature = $_POST['temperature'];
 $entry_json = json_encode($entry);
 
-$entries_file = $storage_path . "entries-2.json";
-file_put_contents($entries_file, $entry_json, FILE_APPEND);
+$entries_file = $storage_path . "entries-3.json";
+file_put_contents($entries_file, $entry_json . PHP_EOL, FILE_APPEND);
 
 $entry_file = $storage_path . "entry.json";
 file_put_contents($entry_file, $entry_json);
