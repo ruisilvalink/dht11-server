@@ -8,14 +8,18 @@
 </head>
 <body class="container">
 	<br>
+	<br>
 	<div class="row">
 		<div class="col-sm text-center">
 			<h1 title="Humidity"><i class="fas fa-tint"></i></h1>
-			<p><div id="humidityDiv"></div></p>
+			<h2><div id="humidityDiv"></div></h2>
 		</div>
+	</div>
+	<br/>
+	<div class="row">
 		<div class="col-sm text-center">
 			<h1 title="Temperature"><i class="fas fa-thermometer-half"></i></h1>
-			<p><div id="temperatureDiv"></div></p>
+			<h2><div id="temperatureDiv"></div></h2>
 		</div>
 	</div>
 	<hr>
@@ -26,16 +30,16 @@ $(document).ready(function() {
 	$.getJSON( "last.php", update);
 	setInterval(function(){
 		$.getJSON( "last.php", update);
-	}, 5000);
+	}, 10000);
 });
 
 function update(data) {
 	if (data == null)
 		return;
 
-	$("#createdOnDiv")[0].innerText = data[0].created_on.date;
-	$("#humidityDiv")[0].innerText = data[0].humidity;
-	$("#temperatureDiv")[0].innerText = data[0].temperature;
+	$("#createdOnDiv")[0].innerHTML = data[0].created_on.date;
+	$("#humidityDiv")[0].innerHTML = data[0].humidity + " %";
+	$("#temperatureDiv")[0].innerHTML = data[0].temperature + " &#x2103";
 }
 
 </script>
