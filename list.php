@@ -12,7 +12,7 @@ $entries_array = array();
 
 while ($entry_line = fgets($entries_handle)) {
     $entry = json_decode($entry_line);
-    $entries_array.push($entry);
+    array_push($entries_array, $entry);
 }
 
 fclose($entries_handle);
