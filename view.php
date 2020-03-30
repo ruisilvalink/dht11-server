@@ -15,16 +15,21 @@
 var chartCanvas = null;
 
 $(document).ready(function() {
-	$.getJSON( "entries.json", drawChart);
+	$.getJSON( "list.php", drawChart);
 
 	setInterval(function(){
-		$.getJSON( "entries.json", drawChart);
+		$.getJSON( "last.php", drawChart);
 	}, 5000);
 });
 
 function drawChart(data) {
 	var humidityData = $.map(data, function(entry) { return { t: moment.utc(entry.created_on.date), y: parseFloat(entry.humidity) }; });
+	if (humidityData == null)
+		humidityData = [];
+	
 	var temperatureData = $.map(data, function(entry) { return { t: moment.utc(entry.created_on.date), y: parseFloat(entry.temperature) }; });
+	if (temperatureData == null)
+		temperatureData = [];
 	
 	if (chartCanvas == null) {
 		var ctx = document.getElementById('chartCanvas');
@@ -52,8 +57,8 @@ function drawChart(data) {
 		    }
 		});
 	} else {
-		chartCanvas.data.datasets[0].data = humidityData;
-		chartCanvas.data.datasets[1].data = temperatureData;
+		chartCanvas.data.datasets[0].data = chartCanvas.data.datasets[0].data.concat(humidityData);
+		chartCanvas.data.datasets[1].data = chartCanvas.data.datasets[1].data.concat(temperatureData);
 		chartCanvas.update();
 	}
 }
