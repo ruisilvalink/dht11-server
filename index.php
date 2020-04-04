@@ -18,14 +18,14 @@
 	<br>
 	<br>
 	<div class="row">
-		<div class="col-sm-12 text-center">
+		<div class="col text-center">
 			<h1 title="Humidity"><i class="fas fa-tint"></i></h1>
 			<h2><div id="humidityDiv"></div></h2>
 		</div>
 	</div>
 	<br/>
 	<div class="row">
-		<div class="col-sm-12 text-center">
+		<div class="col text-center">
 			<h1 title="Temperature"><i class="fas fa-thermometer-half"></i></h1>
 			<h2><div id="temperatureDiv"></div></h2>
 		</div>
@@ -45,7 +45,7 @@ function update(data) {
 	if (data == null)
 		return;
 
-	$("#createdOnDiv")[0].innerHTML = new Date(data[0].created_on.date).toLocaleString();
+	$("#createdOnDiv")[0].innerHTML = new Date(data[0].created_on.date + "Z").toLocaleString();
 	$("#humidityDiv")[0].innerHTML = data[0].humidity + " %";
 	$("#temperatureDiv")[0].innerHTML = data[0].temperature + " &#x2103";
 }
